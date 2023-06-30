@@ -1,0 +1,51 @@
+<style>
+  .formError {
+    color: red;
+    font-size: 12px;
+  }
+</style>
+<div class="row w-100 mx-0 auth-page">
+  <div class="col-md-8 col-xl-6 mx-auto">
+    <div class="card">
+      <div class="row">
+        <div class="col-md-4 pe-md-0">
+          <div class="auth-side-wrapper" [ngStyle]="{ 'background-image': 'url(https://via.placeholder.com/219x452)' }">
+
+          </div>
+        </div>
+        <div class="col-md-8 ps-md-0">
+          <div class="auth-form-wrapper px-4 py-5">
+            <ngb-alert *ngIf="this.unconfirmedEmail" [dismissible]="false" [type]="'fill-warning'">Account not verified! <button type="button" class="btn btn-link" (click)="resendVerificationEmail()">Resend verification link!</button></ngb-alert>
+            <a routerLink="." class="nobleui-logo d-block mb-2">Noble<span>UI</span></a>
+            <h5 class="text-muted fw-normal mb-4">Welcome back! Log in to your account.</h5>
+            <form class="forms-sample" [formGroup]="loginForm" (ngSubmit)="ngSubmit()">
+              <div class="mb-3">
+                <label for="email" class="form-label">Email address</label>
+                <input type="email" class="form-control" id="email" formControlName="email" placeholder="Email" ngvemail>
+                <p class="formError" *ngIf="this.validationErrors">{{this.emailError}}</p>
+              </div>
+              <div class="mb-3">
+                <label for="password" class="form-label">Password</label>
+                <input type="password" class="form-control" id="password" formControlName="password" autocomplete="current-password" placeholder="Password">
+                <p class="formError" *ngIf="this.validationErrors">{{this.passwordError}}</p>
+              </div>
+              <div class="form-check mb-3">
+                <input type="checkbox" class="form-check-input" id="authCheck">
+                <label class="form-check-label" for="authCheck">
+                  Remember me
+                </label>
+              </div>
+              <div>
+                <button type="submit" class="btn btn-primary me-2 mb-2 mb-md-0">Login</button>
+              </div>
+              <div class="d-flex justify-content-between">
+                <a routerLink="/auth/register" class="d-block mt-3 text-muted">Not a user? Sign up</a>
+                <a routerLink="/auth/forgot-password" class="d-block mt-3 text-muted">Forgot Password</a>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
